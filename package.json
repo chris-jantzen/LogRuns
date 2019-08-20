@@ -1,0 +1,21 @@
+{
+  "name": "run_logging_app",
+  "version": "0.0.1",
+  "description": "App to track runs",
+  "main": "server/server.js",
+  "scripts": {
+    "server": "nodemon out/server.js"
+  },
+  "author": "Chris Jantzen",
+  "license": "MIT",
+  "dependencies": {
+    "concurrently": "^4.1.2",
+    "dotenv": "^8.1.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.6.9",
+    "morgan": "^1.9.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  }
+}
