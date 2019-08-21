@@ -2,24 +2,45 @@ import express, { Express } from 'express';
 import dotenv from 'dotenv';
 import morgan from 'morgan';
 
-import { app as user } from './Controllers/UserController';
-import { app as checkHealth } from './Controllers/CheckHealthController';
+class App {
+  private app: Express;
+  private imports: Express[];
+  private port = process.env.PORT || 5000;
 
-dotenv.config({ path: '../config.env' });
-
-const app: Express = express();
-
-// Logging
-app.use(morgan('dev'));
-
-const controllers = [user, checkHealth];
-
-controllers.forEach(
-  (controller: Express): void => {
-    app.use(controller);
+  constructor() {
+    dotenv.config({ path: '../config.env' });
+    this.app = express();
+    this.imports = Array<Express>();
+    this.setup();
   }
-);
 
-const port = process.env.PORT || 5000;
+  private async setup() {
+    this.app.use(morgan('dev'));
+    await this.importControllers();
+    this.app.listen(this.port, () =>
+      console.log(`Listening on port ${this.port}`)
+    );
+  }
 
-app.listen(port, () => console.log(`Listening on port ${port}...`));
+  private async importControllers(): Promise<void> {
+    const imports = [
+      await import('./Controllers/UserController'),
+      await import('./Controllers/CheckHealthController')
+    ];
+
+    let imps: Express[] = [];
+    for (let imp of imports) {
+      imps.push(imp.app);
+    }
+    this.imports = imps;
+    this.useImports();
+  }
+
+  private useImports(): void {
+    for (let imp of this.imports) {
+      this.app.use(imp);
+    }
+  }
+}
+
+const app = new App();
