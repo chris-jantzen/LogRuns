@@ -1,21 +1,29 @@
 {
   "name": "run_logging_app",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "App to track runs",
   "main": "server/server.js",
-  "scripts": {
-    "server": "nodemon out/server.js"
-  },
-  "author": "Chris Jantzen",
+  "author": "Chris Jantzen <jantzeca@mail.uc.edu",
   "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "serve": "node --inspect=5858 -r ts-node/register ./server/server.ts",
+    "serve:watch": "nodemon"
+  },
   "dependencies": {
+    "@types/dotenv": "^6.1.1",
+    "@types/express": "^4.17.1",
+    "@types/mongoose": "^5.5.13",
+    "@types/morgan": "^1.7.37",
     "concurrently": "^4.1.2",
     "dotenv": "^8.1.0",
     "express": "^4.17.1",
     "mongoose": "^5.6.9",
-    "morgan": "^1.9.1"
+    "morgan": "^1.9.1",
+    "ts-node": "^8.3.0"
   },
   "devDependencies": {
-    "nodemon": "^1.19.1"
+    "nodemon": "^1.19.1",
+    "typescript": "^3.5.3"
   }
 }
