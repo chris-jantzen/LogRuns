@@ -1,6 +1,6 @@
-import express, { Express, Request, Response } from 'express';
-export const app: Express = express();
-
-app.route('/healthTest').get((req: Request, res: Response) => {
-  res.status(200).send('Success');
-});
+import express, { Response } from 'express';
+export class CheckHealthController {
+  public static HealthTest = (res: Response) => {
+    res.status(200).send('Success');
+  };
+}
