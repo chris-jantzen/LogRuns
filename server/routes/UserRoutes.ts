@@ -11,4 +11,5 @@ app
 
 app
   .route('/user/:id')
-  .get((req: Request, res: Response) => userController.GetUserById(req, res));
+  .get((req: Request, res: Response) => userController.GetUserById(req, res))
+  .delete((req: Request, res: Response) => userController.DeleteUser(req, res));

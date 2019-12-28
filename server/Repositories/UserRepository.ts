@@ -23,6 +23,9 @@ export class UserRepository {
   };
 
   public GetUserByID = (id: String, response: Function) => {
-    this.user.find({_id: id}, (err, user) => response(err, user));
+    this.user.find({ _id: id }, (err, user) => response(err, user));
   };
+
+  public DeleteUserByID = (id: String, response: Function) =>
+    this.user.findByIdAndDelete(id, err => response(err));
 }
