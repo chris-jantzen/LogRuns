@@ -21,7 +21,7 @@ class App {
     dotenv.config({ path: '../config.env' });
     this.app = express();
     this.imports = Array<Express>();
-    this.setup();
+    this.setup().catch(err => console.error(err));
   }
 
   private async setup() {
@@ -36,7 +36,7 @@ class App {
       });
       console.log('MongoDB Connected...');
     } catch (err) {
-      console.error(err);
+      throw new Error(err);
     }
 
     this.app.listen(this.port, () =>
