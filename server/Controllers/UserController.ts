@@ -1,6 +1,7 @@
 import express, { Express, Request, Response } from 'express';
 import { User } from '../Models/UserInput';
 import { UserRepository } from '../Repositories/UserRepository';
+import { Document } from 'mongoose';
 export const app: Express = express();
 
 export class UserController {
@@ -37,7 +38,19 @@ export class UserController {
   public GetUserById = (req: Request, res: Response) => {
     const id = req.params.id;
     try {
-      this.userRepository.GetUserByID(id, (err: any, user: any) => {
+      this.userRepository.GetUserByID(id, (err: any, user: Object) => {
+        if (err) throw new Error(err);
+        res.status(200).json(user);
+      })
+    } catch (err) {
+      res.status(400).send(err);
+    }
+  };
+
+  public GetUserByProps = (req: Request, res: Response) => {
+    const searchProps = req.body;
+    try {
+      this.userRepository.GetUserByProps(searchProps, (err: any, user: Object) => {
         if (err) throw new Error(err);
         res.status(200).json(user);
       })

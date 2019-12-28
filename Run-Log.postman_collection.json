@@ -1,0 +1,224 @@
+{
+	"info": {
+		"_postman_id": "c1f6d65c-c4a8-41fa-a5bd-eea19a9a77d1",
+		"name": "Run-Log",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "CheckHealth",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{domain}}/healthTest",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"healthTest"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateUser",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"cjantzen@email.com\",\n\t\"fname\": \"Chris\",\n\t\"lname\": \"Jantzen\",\n\t\"age\": 22,\n\t\"height\": {\n\t\t\"large\": 6,\n\t\t\"small\": 0\n\t},\n\t\"weight\": 140,\n\t\"shoes\": [\n\t\t{\n\t\t\t\"brand\": \"Nike\",\n\t\t\t\"model\": \"Pegasus\",\n\t\t\t\"size\": 11.5,\n\t\t\t\"distance\": 200\n\t\t}\t\n\t],\n\t\"measurement_system\": \"imperial\"\n}"
+				},
+				"url": {
+					"raw": "{{domain}}/user",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAllUsers",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{domain}}/user",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetUserById",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{domain}}/user/5e06ab60f737054b7ff12b65",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"user",
+						"5e06ab60f737054b7ff12b65"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateUserWithId",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"cjantzen@email.com\",\n\t\"fname\": \"Chris\",\n\t\"lname\": \"Jantzen\",\n\t\"age\": 22,\n\t\"height\": {\n\t\t\"large\": 6,\n\t\t\"small\": 0\n\t},\n\t\"weight\": 145,\n\t\"shoes\": [\n\t\t{\n\t\t\t\"brand\": \"Nike\",\n\t\t\t\"model\": \"Pegasus\",\n\t\t\t\"size\": 11.5,\n\t\t\t\"distance\": 200\n\t\t}\t\n\t],\n\t\"measurement_system\": \"imperial\"\n}"
+				},
+				"url": {
+					"raw": "{{domain}}/user/5e06cfa6d4320d572facc4a7",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"user",
+						"5e06cfa6d4320d572facc4a7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteUserWithId",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{domain}}/user/5e06cfa6d4320d572facc4a7",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"user",
+						"5e06cfa6d4320d572facc4a7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetUserByProps",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"cjantzen@email.com\",\n\t\"fname\": \"Chris\",\n\t\"lname\": \"Jantzen\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{domain}}/user/byProps",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"user",
+						"byProps"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

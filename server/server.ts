@@ -32,7 +32,8 @@ class App {
     try {
       await mongoose.connect(`mongodb://localhost/runLog`, {
         useNewUrlParser: true,
-        useFindAndModify: false
+        useFindAndModify: false,
+        useUnifiedTopology: true
       });
       console.log('MongoDB Connected...');
     } catch (err) {
