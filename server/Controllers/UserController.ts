@@ -51,12 +51,23 @@ export class UserController {
     try {
       this.userRepository.DeleteUserByID(id, (err: any) => {
         if (err) throw new Error(err);
-        res.status(200).send('Successfully Deleted User');
+        res.status(204);
       })
     } catch (err) {
       res.status(400).send(err);
     }
   };
 
-  public UpdateUser = (req: Request, id: number) => {};
+  public UpdateUser = (req: Request, res: Response) => {
+    const id = req.params.id;
+    const updates = req.body;
+    try {
+      this.userRepository.UpdateUserByID(id, updates, (err: any, data: any) => {
+        if (err) throw new Error(err);
+        res.status(200).json(data);
+      });
+    } catch (err) {
+      res.status(400).send(err);
+    }
+  };
 }
