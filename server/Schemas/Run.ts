@@ -1,6 +1,6 @@
-import mongoose, { Schema } from 'mongoose';
+import { Schema } from 'mongoose';
 
-export const UserSchema = new Schema({
+export const Run = new Schema({
   distance: {
     type: Number,
     required: 'Must input a distance'

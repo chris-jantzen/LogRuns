@@ -21,7 +21,7 @@ class App {
     dotenv.config({ path: '../config.env' });
     this.app = express();
     this.imports = Array<Express>();
-    this.setup();
+    this.setup().catch(err => console.error(err));
   }
 
   private async setup() {
@@ -32,11 +32,12 @@ class App {
     try {
       await mongoose.connect(`mongodb://localhost/runLog`, {
         useNewUrlParser: true,
-        useFindAndModify: false
+        useFindAndModify: false,
+        useUnifiedTopology: true
       });
       console.log('MongoDB Connected...');
     } catch (err) {
-      console.error(err);
+      throw new Error(err);
     }
 
     this.app.listen(this.port, () =>
