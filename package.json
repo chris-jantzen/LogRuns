@@ -8,7 +8,9 @@
   "scripts": {
     "build": "tsc",
     "serve": "node --inspect=5858 -r ts-node/register ./server/server.ts",
-    "serve:watch": "nodemon"
+    "serve:watch": "nodemon",
+    "client": "yarn --cwd ./client run start",
+    "dev": "concurrently \"yarn run serve\" \"yarn run client\""
   },
   "dependencies": {
     "@types/dotenv": "^6.1.1",
