@@ -1,7 +1,6 @@
 import express, { Express, Request, Response } from 'express';
 import { User } from '../Models/UserInput';
 import { UserRepository } from '../Repositories/UserRepository';
-import { Document } from 'mongoose';
 export const app: Express = express();
 
 export class UserController {
@@ -13,11 +12,14 @@ export class UserController {
   public CreateUser = async (req: Request, res: Response) => {
     const input: User = req.body;
     try {
-      await this.userRepository.CreateUsers(input, (err: any, result: Object) => {
-        // Define an output object to be used here, send that with res
-        if (err) throw new Error(err);
-        res.status(201).json(result);
-      });
+      await this.userRepository.CreateUsers(
+        input,
+        (err: any, result: Object) => {
+          // Define an output object to be used here, send that with res
+          if (err) throw new Error(err);
+          res.status(201).json(result);
+        }
+      );
     } catch (err) {
       res.status(400).send(err);
     }
@@ -41,7 +43,7 @@ export class UserController {
       this.userRepository.GetUserByID(id, (err: any, user: Object) => {
         if (err) throw new Error(err);
         res.status(200).json(user);
-      })
+      });
     } catch (err) {
       res.status(400).send(err);
     }
@@ -50,10 +52,13 @@ export class UserController {
   public GetUserByProps = (req: Request, res: Response) => {
     const searchProps = req.body;
     try {
-      this.userRepository.GetUserByProps(searchProps, (err: any, user: Object) => {
-        if (err) throw new Error(err);
-        res.status(200).json(user);
-      })
+      this.userRepository.GetUserByProps(
+        searchProps,
+        (err: any, user: Object) => {
+          if (err) throw new Error(err);
+          res.status(200).json(user);
+        }
+      );
     } catch (err) {
       res.status(400).send(err);
     }
@@ -65,7 +70,7 @@ export class UserController {
       this.userRepository.DeleteUserByID(id, (err: any) => {
         if (err) throw new Error(err);
         res.status(204);
-      })
+      });
     } catch (err) {
       res.status(400).send(err);
     }

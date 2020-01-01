@@ -13,20 +13,15 @@ class CreateUser extends Component {
       small: null
     },
     weight: null,
-    shoes: [
-      {
-        brand: '',
-        model: '',
-        size: null,
-        distance: null
-      }
-    ],
     measurement_system: ''
   };
 
   handleSubmit = e => {
     e.preventDefault();
-    if (this.validate()) axios.post('http://localhost:5000/user', this.state);
+    if (this.validate())
+      axios
+        .post('http://localhost:5000/user', this.state)
+        .catch(err => console.error(err));
     else {
       alert('Missing required pieces of information.');
     }
@@ -39,17 +34,22 @@ class CreateUser extends Component {
     });
   };
 
-  validate = () => {
-    const required = ['email', 'fname', 'measurement_system'];
-    for (let i in this.state) {
-      for (let j of required) {
-        if (i === j && !this.state[i]) {
-          return false;
-        }
-      }
-    }
-    return true;
+  handleChange = e => {
+    this.setState({
+      [e.target.id]: e.target.value
+    });
   };
+
+  handleHeight = e => {
+    this.setState({
+      height: {
+        [e.target.id]: e.target.value
+      }
+    });
+  };
+
+  validate = () =>
+    this.state.email && this.state.fname && this.state.measurement_system;
 
   render = () => {
     return (
@@ -63,7 +63,7 @@ class CreateUser extends Component {
               <span className='red-asterisk'>*</span>
               Required Information
             </p>
-            <div className='row' id='email'>
+            <div className='row'>
               <div className='col s6 center-align'>
                 <p>
                   Email
@@ -71,10 +71,10 @@ class CreateUser extends Component {
                 </p>
               </div>
               <div className='col s6 center-align'>
-                <input type='text' />
+                <input type='text' id='email' onChange={this.handleChange} />
               </div>
             </div>
-            <div className='row' id='fname'>
+            <div className='row'>
               <div className='col s6 center-align'>
                 <p>
                   First Name
@@ -82,26 +82,26 @@ class CreateUser extends Component {
                 </p>
               </div>
               <div className='col s6 center-align'>
-                <input type='text' />
+                <input type='text' id='fname' onChange={this.handleChange} />
               </div>
             </div>
-            <div className='row' id='lname'>
+            <div className='row'>
               <div className='col s6 center-align'>
                 <p>Last Name</p>
               </div>
               <div className='col s6 center-align'>
-                <input type='text' />
+                <input type='text' id='lname' onChange={this.handleChange} />
               </div>
             </div>
-            <div className='row' id='age'>
+            <div className='row'>
               <div className='col s6 center-align'>
                 <p>Age</p>
               </div>
               <div className='col s6 center-align'>
-                <input type='text' />
+                <input type='text' id='age' onChange={this.handleChange} />
               </div>
             </div>
-            <div className='row' id='unit'>
+            <div className='row'>
               <div className='col s6 center-align'>
                 <p>
                   Unit of Measurement
@@ -135,15 +135,25 @@ class CreateUser extends Component {
                 </div>
               </div>
             </div>
-            <div className='row' id='height'>
+            <div className='row'>
               <div className='col s6 center-align'>
                 <p>Height</p>
               </div>
               <div className='col s6 center-align'>
-                <input type='text' placeholder='height in ft/m' />
+                <input
+                  type='text'
+                  placeholder='height in ft/m'
+                  id='large'
+                  onClick={this.handleHeightLarge}
+                />
               </div>
               <div className='col s6 offset-s6 center-align'>
-                <input type='text' placeholder='height in in/cm' />
+                <input
+                  type='text'
+                  placeholder='height in in/cm'
+                  id='small'
+                  onClick={this.handleHeightSmall}
+                />
               </div>
             </div>
             <div className='row' id='Weight'>
@@ -151,7 +161,7 @@ class CreateUser extends Component {
                 <p>Weight</p>
               </div>
               <div className='col s6 center-align'>
-                <input type='text' placeholder='Feet/Meters' />
+                <input type='text' placeholder='Pounds/Kilograms' />
               </div>
             </div>
             <button className='btn center-align'>Submit</button>
