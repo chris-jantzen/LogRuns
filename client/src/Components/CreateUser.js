@@ -3,29 +3,16 @@ import axios from 'axios';
 import '../Styles/CreateUser.css';
 
 class CreateUser extends Component {
-  // state = {
-  //   email: '',
-  //   fname: '',
-  //   lname: '',
-  //   age: null,
-  //   height: {
-  //     large: null,
-  //     small: null
-  //   },
-  //   weight: null,
-  //   measurement_system: ''
-  // };
-
   state = {
-    email: 'cjantzen@mail.com',
-    fname: 'Chris',
-    lname: 'Jantzen',
-    age: 22,
+    email: '',
+    fname: '',
+    lname: '',
+    age: null,
     height: {
-      large: 6,
-      small: 0
+      large: null,
+      small: null
     },
-    weight: 140,
+    weight: null,
     measurement_system: ''
   };
 
