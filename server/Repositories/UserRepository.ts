@@ -30,8 +30,12 @@ export class UserRepository {
     this.user.find(searchProps, (err, user) => response(err, user));
   };
 
-  public DeleteUserByID = (id: String, response: Function) =>
-    this.user.findByIdAndDelete(id, err => response(err));
+  public DeleteUserByID = (id: String, response: Function) => {
+    this.user.findByIdAndDelete(id, (err, res) => {
+      console.log(res);
+      response(err);
+    });
+  };
 
   public UpdateUserByID = (id: String, updates: Object, response: Function) => {
     this.user.findByIdAndUpdate(

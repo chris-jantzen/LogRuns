@@ -69,7 +69,7 @@ export class UserController {
     try {
       this.userRepository.DeleteUserByID(id, (err: any) => {
         if (err) throw new Error(err);
-        res.status(204);
+        res.status(204).send();
       });
     } catch (err) {
       res.status(400).send(err);
