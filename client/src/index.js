@@ -6,7 +6,7 @@ import './index.css';
 import 'materialize-css';
 import 'materialize-css/dist/css/materialize.min.css';
 import * as serviceWorker from './serviceWorker';
-import store from './Reducers/Store';
+import store from './Store/Reducers/Store';
 
 ReactDOM.render(
   <Provider store={store}>
